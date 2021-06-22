@@ -1,0 +1,54 @@
+* {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+
+main {    
+    flex: 1 0 auto;
+}
+
+
+footer {
+    flex-shrink: 0;
+    font-size: .5rem;
+}
+
+#questions,
+#final,
+#highscores,
+#yaynay {
+    display: none;  
+  } 
+
+
+ul.nobullets {
+list-style-type: none;
+}
+
+
+.ansBtn,
+.ansBtn:hover,
+.ansBtn:active,
+.ansBtn:focus,
+.ansBtn:active:focus {
+    box-shadow: none;
+    outline: none;
+    background-color: #28a745;
+}
+
+

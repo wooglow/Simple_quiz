@@ -48,7 +48,6 @@ function setTime() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = `Time: ` + secondsLeft +'s';
-
         if (secondsLeft === 0 || questionCount === questions.length) {
             clearInterval(timerInterval);
             questionsEl.style.display = "none";
@@ -63,7 +62,6 @@ function startQuiz() {
     introEl.style.display = "none";
     questionsEl.style.display = "block";
     questionCount = 0;
-
     setTime();
     setQuestion(questionCount);
 }
@@ -78,46 +76,32 @@ function setQuestion(id) {
     }
 }
 
-
 function checkAnswer(event) {
     event.preventDefault();
-
-
     yaynayEl.style.display = "block";
     var p = document.createElement("p");
     yaynayEl.appendChild(p);
-
-
     setTimeout(function () {
         p.style.display = 'none';
     }, 1000);
-
-
     if (questions[questionCount].correctAnswer === event.target.value) {
         p.textContent = "Correct!";
     } else if (questions[questionCount].correctAnswer !== event.target.value) {
         secondsLeft = secondsLeft - 10;
         p.textContent = "Wrong!";
     }
-
-
     if (questionCount < questions.length) {
         questionCount++;
     }
-
     setQuestion(questionCount);
 }
 
 function addScore(event) {
     event.preventDefault();
-
     finalEl.style.display = "none";
     highscoresEl.style.display = "block";
-
     var init = initialsInput.value.toUpperCase();
     scoreList.push({ initials: init, score: secondsLeft });
-
-    
     scoreList = scoreList.sort((a, b) => {
         if (a.score < b.score) {
           return 1;
@@ -125,15 +109,12 @@ function addScore(event) {
           return -1;
         }
       });
-    
     scoreListEl.innerHTML="";
     for (var i = 0; i < scoreList.length; i++) {
         var li = document.createElement("li");
         li.textContent = scoreList[i].initials +" "+scoreList[i].score+"pts";
         scoreListEl.appendChild(li)
     }
-
-    
     storeScores();
     displayScores();
 }
@@ -142,16 +123,12 @@ function storeScores() {
     localStorage.setItem("scoreList", JSON.stringify(scoreList));
 }
 
-function displayScores() {
-    
+function displayScores() {    
     var storedScoreList = JSON.parse(localStorage.getItem("scoreList"));
-
-    
     if (storedScoreList !== null) {
         scoreList = storedScoreList;
     }
 }
-
 
 function clearScores() {
     localStorage.clear();
@@ -161,14 +138,11 @@ function clearScores() {
 
 startBtn.addEventListener("click", startQuiz);
 
-
 ansBtn.forEach(item => {
     item.addEventListener('click', checkAnswer);
 });
 
-
 submitScrBtn.addEventListener("click", addScore);
-
 
 goBackBtn.addEventListener("click", function () {
     highscoresEl.style.display = "none";

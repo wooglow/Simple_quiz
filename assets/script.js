@@ -42,13 +42,12 @@ var questions = [
         answers: ["1. James Garfield", "2. John F. Kennedy", "3. Theodore Roosevelt Jr.", "4. Barack Obama"],
         correctAnswer: "2"
     },
-
 ];
 
 function setTime() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
-        timeEl.textContent = `Time:${secondsLeft}s`;
+        timeEl.textContent = `Time: ` + secondsLeft +'s';
 
         if (secondsLeft === 0 || questionCount === questions.length) {
             clearInterval(timerInterval);
@@ -130,8 +129,8 @@ function addScore(event) {
     scoreListEl.innerHTML="";
     for (var i = 0; i < scoreList.length; i++) {
         var li = document.createElement("li");
-        li.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
-        scoreListEl.append(li);
+        li.textContent = scoreList[i].initials +" "+scoreList[i].score+"pts";
+        scoreListEl.appendChild(li)
     }
 
     
@@ -175,7 +174,7 @@ goBackBtn.addEventListener("click", function () {
     highscoresEl.style.display = "none";
     introEl.style.display = "block";
     secondsLeft = 75;
-    timeEl.textContent = `Time:${secondsLeft}s`;
+    timeEl.textContent = `Time: ` + secondsLeft +'s';;
 });
 
 
